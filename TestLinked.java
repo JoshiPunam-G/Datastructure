@@ -5,25 +5,25 @@
  *
  ******************************************************************************/
 
-
+//**************Utility for orderedLinked List******************
 
 package com.bridgelabz.datastructure;
 
 public class TestLinked {
-	 Node head;
+	 static Node head;
 
 	 class Node
 	 {
        String element ;
-		String data;
+		int data;
 		 Node next;
 	 }
 	 
-	 public void insert(String data)
+	 public void insert(int str)
 	 {
 		
 		Node node=new Node();
-		node.data=data;
+		node.data=str;
 		node.next=null;
 		
 		if(head==null)
@@ -45,7 +45,7 @@ public class TestLinked {
 	  * insert element at start
 	  * @param data
 	  */
-	 public void insertAtstart(String data)
+	 public void insertAtstart(int data)
 	 {
 		 Node node=new Node();
 			node.data=data;
@@ -63,7 +63,7 @@ public class TestLinked {
 	  * @param data
 	  * @param index
 	  */
-	 public void insertAtpos(String data,int index)
+	 public void insertAtpos(int data,int index)
 	 
 	 {
 		 Node node=new Node();
@@ -118,8 +118,9 @@ public class TestLinked {
 	  * @param data
 	  */
 	 
-	public boolean searchNode(int element) {  
+/*	public boolean searchNode(int element) {  
 	        Node node = head;
+	        int i=1;
 	        int status=0;
 	        boolean flag=false;  
 	        
@@ -132,19 +133,15 @@ public class TestLinked {
 	    {
 	       while(node != null) 
 	            {  
-	            	String s=node.element;
-					if(s.equals(element)) 
+	            	int s=node.data;
+					if(s==element) 
 	                 { 
 						status=1;  
 	                    break; 
 	                }  
-	                else
-	                {
-	                   node = node.next;
-	                   status=0;
-	                   break;
-	                }
-
+					i++;  
+	                node = node.next;  
+	              
 	            }
 	            if(status==1)
 	            {
@@ -156,7 +153,7 @@ public class TestLinked {
 	            }
 	    }
 		return flag;
-	    }  
+	    } */ 
 	
 	/**
 	 * search node
@@ -165,36 +162,36 @@ public class TestLinked {
 	 * @return
 	 */
 	
-	 public boolean search( String element) 
-	    { 
-		 Node head = null;
-		 int status=0;
-	        Node current = head;    //Initialize current 
-	        while (current != null) 
-	        { 
-	            if (current.data == element) 
-	            {
-	            	status=1;  
-	            }
-	            else
-	            {
-	            	
-	            current = current.next;
-	            status=0;
-	            
-	            }
-	            
-	        } 
-	        if(status==1)
-	        {
-	          return true;	
-	        }
-	        else
-	        {
-	        	return false;
-	        }
-	        
-	    } 
+	 
+	 
+	  public static void searchNode(int element)
+	  {  
+	        Node current = head;  
+	        int i = 1;  
+	        boolean flag = false;  
+	        //Checks whether list is empty  
+	        if(head == null)
+	        {  
+	            System.out.println("List is empty");  
+	        }  
+	        else {  
+	            while(current != null)
+	            {  
+	                 //Compares node to be found with each node present in the list  
+	                if(current.data== element)
+	                {  
+	                    flag = true;  
+	                    break;  
+	                }  
+	                i++;  
+	                current = current.next;  
+	            }  
+	        }  
+	        if(flag)  
+	             System.out.println("Element is present in the list at the position : " + i);  
+	        else  
+	             System.out.println("Element is not present in the list");  
+	    }  
 	
 	 
 	 /**
@@ -207,7 +204,7 @@ public class TestLinked {
 		Node temp = head, prev = null;
 
 		while (temp != null) {
-			String str = temp.data;
+			int str = temp.data;
 			if (element.equals(str)) { // Changed head
 				prev = temp;
 				prev.next = temp.next;
@@ -226,33 +223,34 @@ public class TestLinked {
 	   * sort the linkedlist in ascending order.
 	 * @return 
 	   */
-	 /*public void sortList() {  
-	        //Node current will point to head  
-	        Node current = head, index = null;  
-	        String temp;  
-	          
-	        if(head == null) {  
-	            return;  
-	        }  
-	        else {  
-	            while(current != null) {  
-	                //Node index will point to node next to current  
-	                index = current.next;  
-	                  
-	                while(index != null) {  
-	                    //If current node's data is greater than index's node data, swap the data between them  
-	                    if(current.data.compareTo(anotherString)) {  
-	                        temp = current.data;  
-	                        current.data = index.data;  
-	                        index.data = temp;  
-	                    }  
-	                    index = index.next;  
-	                }  
-	                current = current.next;  
-	            }      
-	        }  
-	    }  
-*/
+	
+	 public void sortList(String s) {
+			Node current = head, index = null;  
+		    int temp;  
+		          
+		    if(head == null) {  
+		       return;  
+		     }  
+		    else {  
+	 	       while(current != null) {  
+		         //Node index will point to node next to current  
+		           index = current.next;  
+		                  
+		          while(index != null) {  
+		         //If current node's data is greater than index's node data, swap the data between them  
+		            if(current.hashCode()>index.hashCode())
+		            {  
+		                 temp = current.data;  
+		                 current.data = index.data;  
+		                 index.data = temp;  
+		                 }  
+		               index = index.next;  
+		              }  
+		             current = current.next;  
+		            }  
+		    }
+			
+		}
 	  
 	  
 	  
@@ -282,25 +280,17 @@ public class TestLinked {
 		public void show()
 		 {
 			//insert(100);
-			 Node node=head;
-			 while(node.next!=null)
+			 Node temp=head;
+			 while(temp!=null)
 			 {
-				 System.out.println(node.data);
-				 node=node.next;
+				 System.out.println(temp.data);
+				 temp=temp.next;
 			 }
-			 System.out.println(node.data);
+			 System.out.println("");
 			
 		 }
+
+	
 	 
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
-
- {
-		// TODO Auto-generated method stub
-		
-	}
 
 }

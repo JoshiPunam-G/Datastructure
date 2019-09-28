@@ -62,21 +62,10 @@ public class UnorderList
     	System.out.println("Enter element which you want?");
     	   
     	   String element=Utill.isString();
-    	   System.out.println(l.searchNode(element));
-    	   if(l.searchNode(element))  
-	        {
-    		   System.out.println("Element is present "); 
-	           l.deleteNode(element);
-	           l.show();
-	        }
-    	  
-	        else  
-	        {
-	            System.out.println("insert data");
-	            l.insert(element);
-	            l.show();
-	        }
-    	  	   
+    	 //  System.out.println(l.searchNode(element));
+    	   l.searchNode(element);
+           l.show();
+    	  	
     	
     	  
     	   //System.out.println("Length of LinkedList is:"+l.lengthOfLinkedList()); 

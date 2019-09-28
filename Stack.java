@@ -1,146 +1,134 @@
 
-/* 
-/*  Purpose:Program for checking whether arithmetic expression is balanced or not
- * 
- *  @author  BridgeLabz
- *  @version 1.0 
- *  @since   24-08-2017
- *
- ******************************************************************************/
+/**
+ * Utility class for Stack
+ */
 
 package com.bridgelabz.datastructure;
 
-public class Stack {
-	
-	  static final int MAX = 1000;
-	  
-	  static int top;
-	    
-	  static int a[] = new int[MAX]; // Maximum size of Stack 
-	  
-	  /**
-	   * check if stack is empty or not
-	   * @return
-	   */
-	    static boolean isEmpty() 
-	    { 
-	        return (top < 0); 
-	    } 
-	   
-	  //initially stack is in empty state
-	   
-	    Stack() 
-	    { 
-	        top = -1; 
-	    } 
-	  
-	  /**
-	   * insert element into the 
-	   * @param x
-	   */
-	  public static  void push(int x) 
-	    { 
-	        if (top >= (MAX - 1)) 
-	        { 
-	            System.out.println("Stack Overflow"); 
-	           // return false; 
-	        } 
-	        else 
-	        { 
-	            a[++top] = x; 
-	           // System.out.println(x + " pushed into stack"); 
-	           // return true; 
-	        } 
-	    } 
-	  
-	   //delete elements from stack 
-	  public static  int pop() 
-	    { 
-	        if (top < 0 )
-	        { 
-	            System.out.println("Stack Underflow"); 
-	            return 0; 
-	        } 
-	        else 
-	        { 
-	            int x = a[top--]; 
-	            return x; 
-	        } 
-	    } 
-	  
-	   //peek return the starting element of stack.
-	   public static int peek() 
-	    { 
-	        if (top < 0) { 
-	            System.out.println("Stack Underflow"); 
-	            return 0; 
-	        } 
-	        else { 
-	            int x = a[top]; 
-	            return x; 
-	        } 
-	    } 
-	
-	   
-	   /*function for check Balanced Parenthesis */
-	   public static String check(String exp)
-		{
-		  
-			 if (exp.isEmpty())
-			 return "Balanced";
-			 
-			 //Stack<Character> stack = new Stack<Character>();
-			 for (int i = 0; i < exp.length(); i++)
-			 {
-				 char current = exp.charAt(i);
-				 
-				 if (current == '{' || current == '(' || current == '[')
-				 {
-					 Stack.push(current);
-				 }
-				 if (current == '}' || current == ')' || current == ']')
-				 {
-					 if (!Stack.isEmpty())
-						 return " ***Not Balanced";
-					 char last = (char) Stack.peek();
-					 if (current == '}' && last == '{' || current == ')' && last == '(' || current == ']' && last == '[')
-						 Stack.pop();
-					 else 
-						 return "Not Balanced***";
-				 }	
-			 }
-			// return Stack.isEmpty()?"Balanced":"Not Balanced";
-			 if(Stack.isEmpty())
-			 {
-				 System.out.println("balance");
-			 }
-			 else
-			 {
-				 System.out.println("Not balanced");
-			 }
-			return exp;
-			 
-	   }
-	   
-	   
-	   public static void show()
-	   {
-		   System.out.println("Elements deleted");
-		   for(int i=0;i<MAX;i++)
-		   {
-			   System.out.println(""+a[i]);
-		   }
-		  
-		   
-	   }
-	
-		  
-	
-	   
+import java.util.*;
+
+	class Stack
+	{
+		
+		/* Declaration and initialization  */
+		static int MAX=1000;
+		static int top=-1; 
+        static char items[] = new char[MAX]; 
+  
+        /**
+         *  Purpose: for insertion of data into stack
+         *   
+         * @param x
+         */
+        public static void push(char x)  
+        { 
+            if (top == MAX-1)  
+            { 
+                System.out.println("Stack full"); 
+            }  
+            else 
+            { 
+                items[++top] = x;
+                //top++;
+            } 
+        } 
+        
+        /**Purpose: method for deletion of data from stack
+         * 
+         * @return
+         */
+  
+        public static char pop()  
+        { 
+            if (top == -1)  
+            { 
+                System.out.println("Underflow error"); 
+                return '\0'; 
+            }  
+            else 
+            { 
+                char element = items[top]; 
+                top--; 
+                return element; 
+            } 
+        } 
+        
+        /**
+         * Purpose: method to check if stack is empty or not
+         * @return
+         */
+  
+       public  static boolean isEmpty()  
+        { 
+            return (top == -1) ? true : false; 
+        } 
+       
+       
+       /**
+        * Purpose : method for getiing top element of stack
+        * @return
+        */
+       
+      public static int peek() 
+       { 
+           if (top < 0) { 
+               System.out.println("Stack Underflow"); 
+               return 0; 
+           } 
+           else { 
+               int x = items[top]; 
+               return x; 
+           } 
+       } 
+    
+      
+      
+      /**
+       * 
+       * Purpose :Method for cheking whether expression is balanced or not.
+       * @param exp
+       * @return
+       */
+
+			/* Method for cheking whether expression is balanced or not */
+			public static boolean check(String exp)
+			{
+				/* conversion of string array into char array */
+				char[] ch=exp.toCharArray();
+				
+				/* for loop for traversing character of expression  */
+				for(int i=0;i<exp.length();i++) 
+			       { 
+			          /* if ch[i] contain (,{,[ then push bracket */
+			          if (ch[i] == '{' || ch[i] == '(' || ch[i] == '[') 
+			            Stack.push(ch[i]);                                 
+			          
+			          
+			          /* it check for closing bracket and stack is empty or not */
+			          else if ((ch[i] == '}' || ch[i] == ')' || ch[i] == ']') && (!Stack.isEmpty()))  
+			          {    
+			        	  
+			        	  
+		                if(Stack.peek()=='(' && Stack.peek()==')' ||  Stack.peek()=='[' && Stack.peek()==']' || Stack.peek()=='{' && Stack.peek()=='}')	        	                                                                             //then pop it
+		                	
+		                	
+			             Stack.pop();
+			                
+			          }
+			          if (Stack.isEmpty()) 
+			          { 
+			              return true; 
+			          }
+			       
+			  	}
+				
+				return false;
+			}
+
+			
+			
+	}
+
+     
 
 
-	
-
-	
-
-}

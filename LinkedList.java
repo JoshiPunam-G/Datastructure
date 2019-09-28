@@ -9,15 +9,22 @@
 
 package com.bridgelabz.datastructure;
 
+import com.bridgelabz.datastructure.LinkedList.Node;
+
+
+
+//***********Utlity for UnorderLinkedList***********
 
 public class LinkedList {
 
-	 Node head;
+	 static Node head;
      static String element;
 	 class Node
 	 {
-		 String data;
+		 public final Node nextNode = null;
+		String data;
 		 Node next;
+	
 	 }
 	 
 	 public void insert(String data)
@@ -123,19 +130,22 @@ public class LinkedList {
 		// System.out.println("Delete Method");
 		Node temp = head, prev = null;
 
-		while (temp != null) {
-			String str = temp.data;
-			if (element.equals(str)) { // Changed head
-				prev = temp.next;
-				prev.next = temp.next;
-				return;
-
-			} else {
-				temp = temp.next;
-				
-			}
-			
+		if(temp!= null && temp.data==element)
+		{
+			head=temp.next;
+			return;
 		}
+		
+		while(temp!=null && temp.data!=element)
+		{
+			prev=temp;
+			temp=temp.next;
+		}
+		if(temp==null)
+			return;
+		prev.next=temp.next;
+			
+		
 	 }
 	 
 	 
@@ -144,51 +154,71 @@ public class LinkedList {
 	 /**
 	  * search element from linklist
 	  * @param data
+	 * @return 
 	  */
 	 
 	  public boolean searchNode(String data) {  
 	        Node node = head;
 	        int status=0;
 	        boolean flag=false;  
-	        
-	 
-	        if(head == null)
-	        {  
-	            System.out.println("List is empty");  
-	        }  
-	        else
-	        {  
-	            while(node != null) 
+	       
+	        while(node != null) 
 	            {  
+	        	    status++;
 	               String s=node.data;
 	                if(s.equals(data)) 
-	                 {  
-	                  status=1;  
+	                 {
+	                	flag=true;
+	             
 	                    break; 
 	                }  
 	                else
 	                {
 	                    node = node.next;
-	                 status=0;
+	                 flag=false;
 	                }
 
 	            }
-	            if(status==1)
+	           if(flag==true)
 	            {
+	        	   System.out.println("Element found at+ "+ status);
+	        	   remove(status);
 	            	return true;
 	            }
 	            else
 	            {
+	            	insert(data);
 	            	return false;
 	            }
-	        }  
-	    
-	       
-			return flag;  
-	    }  
+	        }
+			
+	   /**
+	    * remove function
+	    * @param status
+	    */
+	  public static void remove(int status)
+	  {
+		  if(status==1)
+		  {
+			  head=head.next;
+		  }
+		  else
+		  {
+			  Node n=head;
+			  Node n1=null;
+			  for(int i=1;i<status-1;i++)
+			  {
+				  n=n.next;
+			  }
+			  n1=n.next;
+			  n.next=n1.next;
+		  }
+	  }
 	  
 	  
-	  /**
+
+
+	/**
 	   * length of linkedlist
 	   * @return
 	   */
@@ -241,7 +271,7 @@ public class LinkedList {
 			 
 		//	 t.deleteNode("D");
 			 
-			 t.searchNode("XYZ");
+			 t.searchNode("AA");
 			 
 			 t.show();
 		
