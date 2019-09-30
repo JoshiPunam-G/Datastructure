@@ -15,38 +15,65 @@ import java.io.File;
 import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Arrays;
 import java.util.Scanner;
 
 import Utility.Utill;
 
 public class OrderList {
 
+	private static final String[] String = null;
+	public static int[] array;
+
+	@SuppressWarnings("null")
 	public static void main(String[] args)throws Exception {
-         String[] number;
+    /*    String line;
+        
+       String intfile = new String();
     	 
     	 int count = 0;
     	 
-    	 TestLinked t=new TestLinked();
+    	 String[] words=new String[10];
     	 
-    	 File file = new File("/home/bridgeit/Downloads/order.txt"); 
+  
+    	 FileReader file = new FileReader("/home/bridgeit/Downloads/order.txt");
+    	 
+    	 BufferedReader br = new BufferedReader(file);  
+    	 
+    	 while((line = br.readLine()) != null)
+    	 {  
+    	      intfile = intfile+ line;  
+    	      
+    	      words=intfile.split(" ");
+    	    
+    	 }  
+    	 
+    	  System.out.println(intfile);
     	  
-    	  BufferedReader br = new BufferedReader(new FileReader(file)); 
-    	  
-    	  String st; 
-    	  while ((st = br.readLine()) != null)  
-    	  System.out.println(st);
+    	 TestLinked t=new TestLinked();
     	
-    	  String s=st;
-    	  System.out.println();
-    	  System.out.println("After Sorting");
+    	  array=new int[words.length];
+    	
+    	  t.display();
     	  
     	  
-    	  t.sortList(s);
+    	//  System.out.println("After Sorting");
     	  
-    	  t.show();
-	
-
-	  
+    	for(int i=0;i<array.length;i++)
+    	{
+    		array[i]=Integer.parseInt(words[i]);
+    		
+    		t.sortList(array);
+    	}
+	    
+    	
+    	 t.display(); 
+	     t.searchData();
+	     t.display();*/
+		
+		LinkedListUtility.getDataFromFile();
+		LinkedListUtility.integerFileReader();
+		LinkedListUtility.Display();
 	}
 
 	

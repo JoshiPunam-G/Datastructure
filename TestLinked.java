@@ -9,6 +9,9 @@
 
 package com.bridgelabz.datastructure;
 
+import Utility.Utill;
+
+
 public class TestLinked {
 	 static Node head;
 
@@ -113,48 +116,91 @@ public class TestLinked {
 	 }
 	 
 	 
+	 
+	 
+	 
 	 /**
 	  * search element from linklist
 	  * @param data
 	  */
 	 
-/*	public boolean searchNode(int element) {  
-	        Node node = head;
-	        int i=1;
-	        int status=0;
-	        boolean flag=false;  
-	        
-	 
-	    if(head == null)
-	    {  
-	      System.out.println("List is empty"); 
+	   public void searchData()
+	   {
+	        Node temp = head;
+	        int count=0;
+	        System.out.println("Enter a number to Search");
+	        int s =Utill.isInteger();
+	        int flag=0;
+	        while(temp.next != null)
+	        {
+	            count++;
+	            if( temp.data==s)
+	            {
+	                System.out.println(" number is found At "+count);
+	                flag++;
+	                break;
+	            }
+	            temp=temp.next;
+	        }
+
+	        if(flag == 1)
+	        {
+	            removeData(count);
+	        }
+	        else
+	        {
+	            insert(s);
+	            System.out.println("After Adding a LIst ");
+	            display();
+	        }
 	    }
-	    else
+	   
+	   
+	  
+	   
+	   
+	   
+	   /*for removing data */
+	   void removeData(int count)
 	    {
-	       while(node != null) 
-	            {  
-	            	int s=node.data;
-					if(s==element) 
-	                 { 
-						status=1;  
-	                    break; 
-	                }  
-					i++;  
-	                node = node.next;  
-	              
-	            }
-	            if(status==1)
-	            {
-	            	return true;
-	            }
-	            else
-	            {
-	            	return false;
-	            }
+	        Node temp = head;
+	        if(count==1)
+	        {
+	            head =head.next;
+	            System.out.println("After Deleting LIst is ");
+	            display();
+	        }
+	        else
+	        {
+				for(int i=1;i<count-1;i++)
+				{
+				 	temp=temp.next;
+				}
+	        temp.next =temp.next.next;
+	        System.out.println("After Deleting LIst is ");
+	        display();
+	        }
 	    }
-		return flag;
-	    } */ 
+	   
+	   /**
+		   * Display Linked List
+		   */
+	   
+	   public  void display()
+	   {
+	        Node temp =head;
+	        while( temp != null)
+	        {
+	            System.out.print(temp.data+" ");
+	            temp=temp.next;
+	        }
+	        System.out.println(" ");
+	    }
+
+	   
+	   
 	
+		
 	/**
 	 * search node
 	 * @param head
@@ -162,9 +208,9 @@ public class TestLinked {
 	 * @return
 	 */
 	
+
 	 
-	 
-	  public static void searchNode(int element)
+	/*  public static void searchNode(int element)
 	  {  
 	        Node current = head;  
 	        int i = 1;  
@@ -191,7 +237,7 @@ public class TestLinked {
 	             System.out.println("Element is present in the list at the position : " + i);  
 	        else  
 	             System.out.println("Element is not present in the list");  
-	    }  
+	    } */ 
 	
 	 
 	 /**
@@ -224,32 +270,23 @@ public class TestLinked {
 	 * @return 
 	   */
 	
-	 public void sortList(String s) {
-			Node current = head, index = null;  
-		    int temp;  
-		          
-		    if(head == null) {  
-		       return;  
-		     }  
-		    else {  
-	 	       while(current != null) {  
-		         //Node index will point to node next to current  
-		           index = current.next;  
-		                  
-		          while(index != null) {  
-		         //If current node's data is greater than index's node data, swap the data between them  
-		            if(current.hashCode()>index.hashCode())
-		            {  
-		                 temp = current.data;  
-		                 current.data = index.data;  
-		                 index.data = temp;  
-		                 }  
-		               index = index.next;  
-		              }  
-		             current = current.next;  
-		            }  
-		    }
-			
+	 public int[] sortList(int[] array) {
+		 int size=array.length;
+		 for(int i=size;i>0;i--)
+		 {
+			 for(int j=1;j<size;j++)
+			 {
+				 if(array[j-1]>array[j])
+				 {
+					 int temp=array[j-1];
+					 array[j-1]=array[j];
+					 array[j]=temp;
+				 }
+			 }
+			 size--;
+		 }
+	
+			return array;
 		}
 	  
 	  
@@ -273,22 +310,7 @@ public class TestLinked {
 	  }
 	  
 	  
-	  /**
-	   * Display Linked List
-	   */
-	 
-		public void show()
-		 {
-			//insert(100);
-			 Node temp=head;
-			 while(temp!=null)
-			 {
-				 System.out.println(temp.data);
-				 temp=temp.next;
-			 }
-			 System.out.println("");
-			
-		 }
+	
 
 	
 	 

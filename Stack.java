@@ -13,14 +13,14 @@ import java.util.*;
 		/* Declaration and initialization  */
 		static int MAX=1000;
 		static int top=-1; 
-        static char items[] = new char[MAX]; 
+        static int items[] = new int[MAX]; 
   
         /**
          *  Purpose: for insertion of data into stack
          *   
-         * @param x
+         * @param i
          */
-        public static void push(char x)  
+        public static int push(int i)  
         { 
             if (top == MAX-1)  
             { 
@@ -28,9 +28,10 @@ import java.util.*;
             }  
             else 
             { 
-                items[++top] = x;
+                items[++top] = i;
                 //top++;
-            } 
+            }
+			return i; 
         } 
         
         /**Purpose: method for deletion of data from stack
@@ -38,7 +39,7 @@ import java.util.*;
          * @return
          */
   
-        public static char pop()  
+        public static int pop()  
         { 
             if (top == -1)  
             { 
@@ -47,7 +48,7 @@ import java.util.*;
             }  
             else 
             { 
-                char element = items[top]; 
+                int element = items[top]; 
                 top--; 
                 return element; 
             } 
@@ -80,6 +81,19 @@ import java.util.*;
                return x; 
            } 
        } 
+      
+      
+      public static void show()
+      {
+    	  if(top == -1)
+    	  {
+    		  System.out.println("Underflow");
+    	  }
+    	  else
+    	  {
+    		  
+    	  }
+      }
     
       
       
@@ -109,17 +123,26 @@ import java.util.*;
 			          {    
 			        	  
 			        	  
-		                if(Stack.peek()=='(' && Stack.peek()==')' ||  Stack.peek()=='[' && Stack.peek()==']' || Stack.peek()=='{' && Stack.peek()=='}')	        	                                                                             //then pop it
-		                	
+		                if((Stack.peek()=='(' &&  ch[i]==')') || ( Stack.peek()=='[' && ch[i]==']') || (Stack.peek()=='{' && ch[i]=='}'))	        	                                                                             //then pop it
+		                { 	
 		                	
 			             Stack.pop();
+		                }
+		                else
+		                {
+		                	System.out.println("Not Balanced");
+		                	
+		                }
 			                
 			          }
-			          if (Stack.isEmpty()) 
-			          { 
-			              return true; 
+			          else
+			          {
+			        	  if(ch[i]==')'  || ch[i]==']' || ch[i]=='}')
+			        	  {
+			        		  System.out.println("not balanced");
+			        	  }
 			          }
-			       
+			         
 			  	}
 				
 				return false;
